@@ -4,7 +4,12 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Database
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import tech.example.task.database.DatabaseObj
+import tech.example.task.database.DatabaseRepo
+import tech.example.task.database.Student
+
 
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
@@ -12,7 +17,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val searchResult: Flow<List<Student>>
 
     init {
-        val dB = DatabaseObj
+        val dB = DatabaseObj.getInstance(context = application.applicationContext)
         val dataDao = dB.studentDao()
         repository = DatabaseRepo(dataDao)
         searchResult = repository.searchResults

@@ -53,7 +53,7 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
     var confirmPasswordVisibility by remember { mutableStateOf(false) }
 
 
-
+//
 //    LazyColumn{
 //        items(searchResults){results ->
 //            Row(
@@ -70,7 +70,32 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
     Column(modifier = Modifier
         .background(color = if (isDark) Color.Black else Color.White)
         .fillMaxSize()) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .width(500.dp)
+                .padding(top = 50.dp, start = 15.dp)
+        ) {
+            val compnotify by rememberLottieComposition(
+                spec = LottieCompositionSpec.Asset("profile.json")
+            )
+            val progress by animateLottieCompositionAsState(compnotify)
+            LottieAnimation(
+                composition = compnotify,
+                iterations = Int.MAX_VALUE,
+                isPlaying = true,
+                contentScale = ContentScale.Crop,
+                speed = 1.45f,
+                modifier = Modifier
+                    .size(45.dp)
+                    .padding(2.dp)
+                    .clickable {
+                        navHostController.navigate(Screens.ProfileScreen.route)
+                    }
 
+            )
+        }
         val compnotify by rememberLottieComposition(
             spec = LottieCompositionSpec.Asset("stylebook.json")
         )
@@ -82,8 +107,9 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
             contentScale = ContentScale.Crop,
             speed = 1.45f,
             modifier = Modifier
+
                 .size(350.dp)
-                .padding( top = 10.dp, start = 20.dp)
+                .padding( start = 20.dp)
         )
 
         Column(
@@ -93,7 +119,7 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
                     flingBehavior = ScrollableDefaults.flingBehavior()
                 )
                 .fillMaxWidth()
-                .background(color =  if (isDark) Color.Black else Color.White)
+                .background(color = if (isDark) Color.Black else Color.White)
                 .padding(start = 15.dp)
         ) {
             OutlinedTextField(
@@ -122,7 +148,9 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
                     color =if (isDark) Color.Gray else Color.Black) },
                 placeholder = { Text(text = " Email Address") },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth(0.9f)
+                modifier = Modifier
+                    .fillMaxWidth(0.9f)
+              //      .border(width = 1.dp, color = if (isDark) Color.White else Color.Black)
             )
             OutlinedTextField(
                 value = phoneValue.value,
@@ -198,7 +226,10 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
                 phoneValue = phoneValue.value)
                  navHostController.navigate(Screens.SecondScreen.route)
             },
-            modifier = Modifier.fillMaxWidth(0.8f).height(60.dp).padding(top = 15.dp, start = 55.dp),
+            modifier = Modifier
+                .fillMaxWidth(0.8f)
+                .height(60.dp)
+                .padding(top = 15.dp, start = 55.dp),
             enabled = true,
             border = BorderStroke(width = 2.dp, brush = SolidColor(if (isDark) Color.White else Color.Black)),
             shape = MaterialTheme.shapes.medium
@@ -206,12 +237,8 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
         ){
             Text(text = "LET'S GO!!", color = if (isDark) Color.White else Color.Black)
         }
-        Box(modifier =Modifier
-            .fillMaxSize(),
-            Alignment.BottomCenter )
-        {
-            Row(modifier = Modifier
-                ,
+
+            Row(modifier = Modifier.padding(start = 30.dp),
                 horizontalArrangement = Arrangement.Center)
             {
 
@@ -219,26 +246,27 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
                     fontSize = 18.sp,
                     color = if (isDark) Color.Gray else Color.Black ,
                     modifier = Modifier
-                        .padding( start = 10.dp, bottom = 30.dp))
+                        .padding( start = 10.dp, top = 20.dp))
                 val compnotify by rememberLottieComposition(
                     spec = LottieCompositionSpec.Asset("heart.json")
                 )
                 val progress by animateLottieCompositionAsState(compnotify)
                 LottieAnimation(
                     composition = compnotify,
-                    iterations = 1,
+                    iterations = Int.MAX_VALUE,
                     isPlaying = true,
                     contentScale = ContentScale.Crop,
                     speed = 1.45f,
                     modifier = Modifier
-                        .size(35.dp)
-                        .padding(start = 10.dp)
+                        .size(70.dp)
+                        .padding(start = 1.dp)
                 )
+
             }
         }
 
     }
-}
+
 
 
 

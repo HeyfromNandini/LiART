@@ -1,4 +1,4 @@
-package tech.example.database
+package tech.example.task.database
 
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
