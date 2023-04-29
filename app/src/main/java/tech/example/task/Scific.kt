@@ -1,5 +1,7 @@
 package tech.example.task
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -8,19 +10,18 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -29,6 +30,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
 fun Scific(navHostController: NavHostController, isDark: Boolean,onClick: ()-> Unit){
@@ -37,57 +42,73 @@ fun Scific(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
         ScificClass(
             name7 = "THE TIME MACHINE",
             icon7 = R.drawable.thetimemachine,
-            link7 = ""),
+            link7 = "https://drive.google.com/file/d/1mUGbMe9OIAh3l1C-K_FEXVV-uwep06Nd/view?usp=share_link"),
         ScificClass(
             name7 = "THE TIME TRAVELLER'S WIFE",
             icon7 = R.drawable.timetravellerswife,
-            link7 = ""),
+            link7 = "https://drive.google.com/file/d/1mXnt7EgrqmX5wkT_AzsNWxxjA0WXb91O/view?usp=share_link"),
         ScificClass(
-            name7 = "THE DREAM OF SPACE",
+            name7 = "A VOYAGE TO THE MOON",
             icon7 = R.drawable.dreamofspace,
             link7 = ""),
         ScificClass(
             name7 = "THE GIRL WHO KNEW TOO MUCH",
             icon7 = R.drawable.thegirlwhoknew,
-            link7 = ""),
+            link7 = "https://drive.google.com/file/d/1mmIzSOE8gy-ELbDCites7ZHXriRTanwk/view?usp=share_link"),
         ScificClass(
             name7 = "STRANGE WEATHER",
             icon7 = R.drawable.strangeweather,
-            link7 = "")
+            link7 = "https://drive.google.com/file/d/1o5WrluJ-pltHX7MUKHaQ7Aa4MHKPsrug/view?usp=share_link")
     )
 
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.Black)
+            .background(color = if (isDark) Color.Black else Color.White)
     ) {
         Row() {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
                 contentDescription = "",
-                tint = Color.White,
-                modifier = Modifier.padding(start = 15.dp, top = 35.dp).size(40.dp)
-                    .clickable {  navHostController.navigate(Screens.SecondScreen.route) }
+                tint = if (isDark) Color.White else Color.Black,
+                modifier = Modifier
+                    .padding(start = 15.dp, top = 35.dp)
+                    .size(40.dp)
+                    .clickable { navHostController.navigate(Screens.SecondScreen.route) }
             )
             Text(
                 textAlign = TextAlign.Start,
                 text = "SCI-FIC", fontFamily = FontFamily.Serif,
                 fontStyle = FontStyle.Italic,
-                color = Color.White,
+                color = if (isDark) Color.White else Color.Black,
                 fontSize = 40.sp, modifier = Modifier
                     .padding(start = 1.dp, top = 30.dp)
+            )
+            val compnotify by rememberLottieComposition(
+                spec = LottieCompositionSpec.Asset("magicbook.json")
+            )
+            val progress by animateLottieCompositionAsState(compnotify)
+            LottieAnimation(
+                composition = compnotify,
+                iterations = Int.MAX_VALUE,
+                isPlaying = true,
+                contentScale = ContentScale.Crop,
+                speed = 1.45f,
+                modifier = Modifier
+                    .size(120.dp)
+                    .padding( top = 5.dp, end = 70.dp).padding(2.dp)
             )
         }
         Row(modifier = Modifier.fillMaxWidth()) {
             Card(
                 modifier = Modifier
-                    .padding(start=2.dp, top = 10.dp)
+                    .padding(start = 2.dp, top = 1.dp)
                     .height(200.dp)
                     .width(450.dp)
                     .clip(RoundedCornerShape(50.dp)),
-                backgroundColor = Color.Black,
-                border = BorderStroke(width = 2.dp, brush = SolidColor(Color.White)),
+                backgroundColor = if (isDark) Color.Black else Color.White,
+                border = BorderStroke(width = 1.dp, brush = SolidColor(if (isDark) Color.White else Color.Black)),
                 shape = MaterialTheme.shapes.medium
             ) {
                 Image(
@@ -110,7 +131,8 @@ fun Scific(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                             contentDescription = "",
                             tint = Color.Unspecified,
                             modifier = Modifier
-                                .fillMaxSize().padding(4.dp)
+                                .fillMaxSize()
+                                .padding(4.dp)
                                 .clip(RoundedCornerShape(20.dp))
                         )
                     }
@@ -120,12 +142,13 @@ fun Scific(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                             .width(200.dp)
                             .padding(start = 10.dp, top = 20.dp, bottom = 20.dp)
                             .clip(RoundedCornerShape(20.dp)),
-                        border = BorderStroke(width = 1.dp, brush = SolidColor(Color.White)),
+                        backgroundColor = if (isDark)  Color.Black else Color.LightGray,
+                        border = BorderStroke(width = 1.dp, brush = SolidColor(if (isDark) Color.White else Color.Black))
 
-                        ) {
+                    ) {
                         Text(
                             text = listItem.name7,
-                            color = Color.White,
+                            color = if (isDark) Color.White else Color.Black,
                             fontWeight = FontWeight.Medium,
                             fontSize = 20.sp,
 
@@ -133,13 +156,33 @@ fun Scific(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                                 .padding(start = 30.dp, top = 30.dp)
                             //   modifier = Modifier.padding(3.dp).padding(5.dp)
                         )
+                        Button(
+                            onClick = {
+                                val urlIntent = Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse(listItem.link7)
+
+                                )
+                            },
+                            modifier = Modifier.height(40.dp).width(30.dp)
+                                .padding(top = 85.dp, start = 30.dp, bottom = 18.dp, end = 50.dp),
+                            enabled = true,
+                            border = BorderStroke(width = 1.dp, brush = SolidColor(if (isDark) Color.White else Color.Black)),
+                            shape = MaterialTheme.shapes.medium
+
+
+                        ){
+                            Text(text = "Open PDF", color = if (isDark) Color.White else Color.Black)
+                        }
                     }
                 }
-
-
+                Row(modifier = Modifier
+                    .padding(start = 8.dp, bottom = 2.dp, top = 5.dp)
+                    .height(10.dp)) {
+                }
             }
         }
+
     }
 }
-
 

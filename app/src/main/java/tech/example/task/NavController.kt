@@ -52,6 +52,14 @@ fun NavController(viewModel: MainViewModel) {
             )
         }
         }
+        composable(route = Screens.ProfileScreen.route) {
+            Profile(navHostController = navController,viewModel =viewModel, isDark = dark){
+                dark = !dark
+                systemUiController.setSystemBarsColor(
+                    if (dark) Color.Black else Color.White
+                )
+            }
+        }
         composable(route = Screens.SecondScreen.route) {
           Second(navHostController = navController, isDark = dark){
               dark = !dark

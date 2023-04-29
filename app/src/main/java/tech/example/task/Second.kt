@@ -1,22 +1,19 @@
 package tech.example.task
 
 import android.content.Intent
-import android.graphics.pdf.PdfDocument
-import android.media.MediaPlayer
 import android.net.Uri
-import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,7 +21,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -37,13 +33,18 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.pspdfkit.configuration.activity.PdfActivityConfiguration
-import com.pspdfkit.ui.PdfActivity
-import io.github.farhanroy.composepdf.ComposePDF
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.rememberPagerState
+import java.io.BufferedReader
+import java.io.FileInputStream
+import java.io.InputStreamReader
 
+
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> Unit) {
+    val fileName = null
+    val state = rememberPagerState()
     val context = LocalContext.current
     //var mediaPlayer = MediaPlayer.create(context, R.raw.Janekyu)
     var pdfUri by remember { mutableStateOf<Uri?>(null) }
@@ -52,12 +53,14 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
     ActivityResultContracts.GetContent()) { uri: Uri? ->
 
     }
+
+
     val fantasy = mutableListOf<FantasyClass>(
         FantasyClass(
             name1 = "ACOTAR",
             icon1 = R.drawable.acotar,
             link1 = "https://drive.google.com/file/d/1axM7gBdDDhqXWnZcPx2Uwwo4OZxu6hJU/view?usp=share_link"
-            ),
+        ),
         FantasyClass(
             name1 = "Shatter me",
             icon1 = R.drawable.shatterme,
@@ -73,7 +76,7 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
         FantasyClass(
             name1 = "THE BRIDGE KINGDOM",
             icon1 = R.drawable.bridgekingdom,
-            link1 = "https://drive.google.com/file/d/1iYuWR7kw2E2ssIWhs3VFUcbZx0f1PWvm/view?usp=share_link")
+            link1 = "https://drive.google.com/file/d/1axM7gBdDDhqXWnZcPx2Uwwo4OZxu6hJU/view?usp=share_link")
     )
     val romance = mutableListOf<RomanceClass>(
         RomanceClass(
@@ -85,19 +88,19 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
             name2 = "ANNA AND THE FRENCH KISS",
             icon2 = R.drawable.annaandfrenchkiss,
             link2 = "https://drive.google.com/file/d/1imH_NGOuxR5Le3M7kIfk3vfxN6LwVc9g/view?usp=share_link"
-            ),
+        ),
         RomanceClass(
             name2 = "THE SPANISH LOVE DECEPTION",
             icon2 = R.drawable.spanishlove,
-        link2 = "https://drive.google.com/file/d/1a_r4tMbDpLPOg-oVIy4Z_Jw-Fk2BNrcM/view?usp=share_link"),
+            link2 = "https://drive.google.com/file/d/1a_r4tMbDpLPOg-oVIy4Z_Jw-Fk2BNrcM/view?usp=share_link"),
         RomanceClass(
             name2 = "THE LOVE HYPOTHESIS",
             icon2 = R.drawable.lovehypothesis,
-        link2 = "https://drive.google.com/file/d/1a_CtRixQCuKfwOqRTv3HjJJ3T0LeMtJq/view?usp=share_link"),
+            link2 = "https://drive.google.com/file/d/1a_CtRixQCuKfwOqRTv3HjJJ3T0LeMtJq/view?usp=share_link"),
         RomanceClass(
             name2 = "ARCHER'S VOICE",
             icon2 = R.drawable.archersvoice,
-        link2 = "https://drive.google.com/file/d/1ijAxpH2Q2lpt8DiVYeUF6nJs5Upi4y2v/view?usp=share_link")
+            link2 = "https://drive.google.com/file/d/1ijAxpH2Q2lpt8DiVYeUF6nJs5Upi4y2v/view?usp=share_link")
     )
 
 
@@ -105,7 +108,7 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
         HorrorClass(
             name3 = "VERITY",
             icon3 = R.drawable.verity,
-        link3 = "https://drive.google.com/file/d/1aWlARpJX9nHMzGC8FeKuTB-ZEJHpeHzi/view?usp=share_link"),
+            link3 = "https://drive.google.com/file/d/1aWlARpJX9nHMzGC8FeKuTB-ZEJHpeHzi/view?usp=share_link"),
         HorrorClass(
             name3 = "WILD COUNTRY",
             icon3 = R.drawable.anne,
@@ -113,7 +116,7 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
         HorrorClass(
             name3 = "LAYLA",
             icon3 = R.drawable.layla,
-            link3 = ""),
+            link3 = "https://drive.google.com/file/d/1lsZT5LgnH7m6UXl9PqSFKD9s6bH840q6/view?usp=share_link"),
         HorrorClass(
             name3 = "THE HAUNTING OF HILL HOUSE",
             icon3 = R.drawable.hauntinghillhouse,
@@ -125,48 +128,49 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
 
     val thriller = mutableListOf<ThrillerClass>(
         ThrillerClass(
-            name4 = "THE MONSTER IN THE MIRROR",
-            icon4 = R.drawable.monster,
-        link4 = ""),
+            name4 = "THE MOONSTONE",
+            icon4 = R.drawable.moonstone,
+            link4 = "https://drive.google.com/file/d/1p6_Fw8p9Ypao-f5I4I14McUoY2nfgQCz/view?usp=drivesdk"),
         ThrillerClass(
-            name4 ="THE TAKINGS",
-            icon4 = R.drawable.thetakings,
-            link4 = ""),
+            name4 ="THE BODY",
+            icon4 = R.drawable.thebody,
+            link4 = "https://drive.google.com/file/d/1p5RlIkhtQEZ-MG3Sisjes2RRlhjEDkFc/view?usp=drivesdk"),
         ThrillerClass(
             name4 = "GONE GIRL",
             icon4 = R.drawable.gonegirl,
-            link4 = ""),
+            link4 = "https://drive.google.com/file/d/1b4kMaJ1hTqFeXLM092ZBOf0wYly1DV3e/view?usp=share_link"),
         ThrillerClass(
             name4 = "THE FEVER IN THE WATER",
             icon4 = R.drawable.thriller,
-            link4 = ""),
+            link4 = "https://drive.google.com/file/d/1b2woIS_3BG9w5qwMea5j1wCx5OANTd1h/view?usp=share_link"),
         ThrillerClass(
             name4 = "A STRANGER IN THE HOUSE",
             icon4 = R.drawable.strangerinhouse,
-            link4 = "")
+            link4 = "https://drive.google.com/file/d/1b2dtpp1uUSqftC8J-9q4ZdzZEtJ0BMQn/view?usp=share_link")
     )
+
 
     val biography = mutableListOf<BiographyClass>(
         BiographyClass(
             name5 = "SARDAR VALLABBHAI PATEL",
             icon5 = R.drawable.sardar,
-        link5 = ""),
+            link5 = "https://drive.google.com/file/d/1mQLGqKfzDAeE2yb7hwDPA-PwxWs_G67S/view?usp=share_link"),
         BiographyClass(
             name5 =  "WINGS OF FIRE",
             icon5 = R.drawable.wingsoffire,
-            link5 = ""),
+            link5 = "https://drive.google.com/file/d/1m3ShOhBqTF3LiINzOkvEaA9k88FD4R11/view?usp=share_link"),
         BiographyClass(
             name5 = "ALBERT EINSTEIN",
             icon5 = R.drawable.albert,
-            link5 = ""),
+            link5 = "https://drive.google.com/file/d/1m5b-hUYMwu2gIMgan47dR6cmK2xWInir/view?usp=share_link"),
         BiographyClass(
             name5 = "ABRAHM LINCOLN",
             icon5 = R.drawable.abrahamlincoln,
-            link5 = ""),
+            link5 = "https://drive.google.com/file/d/1mHVMNt08ei4ejHZ1lbeFsN5_JgCADJRR/view?usp=share_link"),
         BiographyClass(
             name5 = "THE HAPPIEST MAN ON EARTH",
             icon5 = R.drawable.happiestman,
-            link5 = "")
+            link5 = "https://drive.google.com/file/d/1o2RQv2dEYl05aLm_OhSmsmIjvm88R7FL/view?usp=share_link")
     )
 
     val poetry = mutableListOf<PoetryClass>(
@@ -249,7 +253,7 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
             val progress by animateLottieCompositionAsState(compnotify)
             LottieAnimation(
                 composition = compnotify,
-                iterations = 1,
+                iterations = Int.MAX_VALUE,
                 isPlaying = true,
                 contentScale = ContentScale.Crop,
                 speed = 1.45f,
@@ -264,35 +268,39 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                 modifier = Modifier.padding(top = 40.dp, start = 2.dp)
             )
         }
-        Row(
-            modifier = Modifier
-                .width(340.dp)
-                .height(35.dp)
-                .background(color = if (isDark) Color.LightGray else Color.Gray,)
-                .padding(top = 5.dp, start = 20.dp)
-        ) {
-//            Text(text = "MUSIC ", color = Color.Black, fontSize = 15.sp)
-//            IconButton(onClick = { mediaPlayer.start() }) {
-//                Icon(painter = painterResource(id = R.drawable.play),
-//                    contentDescription = "",
-//                    Modifier.size(100.dp)
-//                    .padding(top = 5.dp, start = 10.dp))
-//            }
-//
-//             IconButton for Pause Action
-//            IconButton(onClick = { mediaPlayer.pause() }) {
-//                Icon(painter = painterResource(id = R.drawable.pause),
-//                    contentDescription = "",
-//                    Modifier.size(100.dp)
-//                        .padding(top = 5.dp, start = 10.dp))
-//            }
-        }
+
+         Row(modifier = Modifier
+              .fillMaxWidth()
+              .height(50.dp)
+              .padding(top = 15.dp, start = 10.dp, end = 10.dp)
+              .clip(RoundedCornerShape(15.dp))
+             .background(color = if (isDark)  Color.White else Color.LightGray)
+
+          ){
+             Icon(imageVector = Icons.Filled.Search,
+                 contentDescription = "",
+             tint = if (isDark) Color.Black else Color.White,
+             modifier = Modifier
+                 .padding(start = 15.dp, top =3.dp)
+                 .size(23.dp)
+             )
+
+                Text(text = "Search here...",
+                    fontSize = 17.sp,
+                    color =  if (isDark) Color.Black else Color.White ,
+                    modifier = Modifier.padding(start = 2.dp, top= 3.dp))
+            }
+
+
+
         Row(
             modifier = Modifier
                 .width(370.dp)
-                .height(90.dp)
+                .height(50.dp)
                 .background(color = if (isDark) Color.Black else Color.White)
-                .padding(top = 5.dp, start = 10.dp)
+                .padding(top = 5.dp, start = 10.dp),
+
+
         ) {
 
 
@@ -338,46 +346,108 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                 Text(text = "NEW", color = if (isDark) Color.White else Color.Black)
             }
         }
-        LazyRow {
-            items(17) { listItem ->
-                Icon(
-                    imageVector = Icons.Filled.Star,
-                    contentDescription = "",
-                    tint = if (isDark) Color.White else Color.Black,
-                    modifier = Modifier
-                        .padding(start = 1.dp, top = 10.dp, bottom = 10.dp)
-                        .size(20.dp))
-            }}
-        Card(
-            modifier = Modifier
-                .height(200.dp)
-                .width(400.dp)
-                .background(color = Color.Unspecified)
-                .padding(
-                    top = 1.dp, bottom = 2.dp
-                )
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.novels),
-                contentDescription = ""
-            )
-        }
-        LazyRow {
-            items(17) { listItem ->
-                Icon(
-           imageVector = Icons.Filled.Star,
-            contentDescription = "",
-            tint = if (isDark) Color.White else Color.Black,
-            modifier = Modifier
-                .padding(start = 1.dp, top = 10.dp, bottom = 10.dp)
-                .size(20.dp))
-            }}
-        
         Column(
             modifier = Modifier.verticalScroll(rememberScrollState(),
                 flingBehavior = ScrollableDefaults.flingBehavior())
 
         ) {
+        LazyRow {
+            items(21) { listItem ->
+                Icon(
+                    imageVector = Icons.Filled.Star,
+                    contentDescription = "",
+                    tint = if (isDark) Color.White else Color.Black,
+                    modifier = Modifier
+                        .padding(start = 2.dp, top = 10.dp, bottom = 10.dp)
+                        .size(15.dp))
+            }}
+
+                 Card(
+                     modifier = Modifier
+                         .height(200.dp)
+                         .width(400.dp)
+                         .background(color = Color.Unspecified)
+                         .padding(
+                             top = 1.dp, bottom = 2.dp
+                         )){
+
+            Image(
+                painter = painterResource(id = R.drawable.novels),
+                contentDescription = ""
+            )
+                 }
+
+            LazyRow {
+                items(21) { listItem ->
+                    Icon(
+                        imageVector = Icons.Filled.Star,
+                        contentDescription = "",
+                        tint = if (isDark) Color.White else Color.Black,
+                        modifier = Modifier
+                            .padding(start = 2.dp, top = 10.dp, bottom = 10.dp)
+                            .size(15.dp))
+                }}
+
+            Text(
+                text = "ADD YOUR FAVS",
+                color = if (isDark) Color.White else Color.Black,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                fontStyle = FontStyle.Italic,
+                fontFamily = FontFamily.Serif,
+                modifier = Modifier.padding(top = 10.dp, start = 15.dp)
+            )
+
+      Row(  modifier = Modifier
+          .horizontalScroll(
+              rememberScrollState(),
+              flingBehavior = ScrollableDefaults.flingBehavior()
+          )
+          .fillMaxWidth()
+          .height(170.dp)
+          .background(color = if (isDark) Color.Black else Color.White)) {
+
+
+          Card(
+              modifier = Modifier
+                  .height(180.dp)
+                  .width(150.dp)
+                  .padding(start = 5.dp, top = 2.dp)
+                  .clip(RoundedCornerShape(20.dp))
+                  .background(color = if (isDark) Color.Black else Color.White)
+          ) {
+              Image(painter = painterResource(id = R.drawable.addnew), contentDescription ="",
+              modifier = Modifier.clickable {
+                  val fileInputStream: FileInputStream =
+                      context
+                          .getApplicationContext()
+                          .openFileInput(fileName)
+                  val inputStreamReader = InputStreamReader(fileInputStream)
+                  val bufferedReader = BufferedReader(inputStreamReader)
+                  val lineData: String = bufferedReader.readLine()
+              })
+//              Icon(
+//                  imageVector = Icons.Outlined.Add,
+//                  contentDescription = "",
+//                  tint = if (isDark) Color.Gray else Color.White,
+//                  modifier = Modifier
+//                      .padding(end = 10.dp)
+//                      .size(80.dp)
+//                      .clickable {
+////                          val uri = Uri.parse(getFilesDir() + "my-document.pdf")
+////                          val config = PdfActivityConfiguration.Builder(context).build()
+////                          PdfActivity.showDocument(this, uri, config)
+//
+//                          val fileInputStream: FileInputStream =
+//                              context
+//                                  .getApplicationContext()
+//                                  .openFileInput(fileName)
+//                          val inputStreamReader = InputStreamReader(fileInputStream)
+//                          val bufferedReader = BufferedReader(inputStreamReader)
+//                          val lineData: String = bufferedReader.readLine()
+//                      })
+          } }
+
           Row(modifier = Modifier
               .padding(start = 8.dp, bottom = 2.dp, top = 5.dp)
               .height(45.dp)) {
@@ -411,26 +481,19 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                     Intent.ACTION_VIEW,
                     Uri.parse(listItem.link1)
                 )
-
-//                    val uri = Uri.parse(getFilesDir() + "my-document.pdf")
-//                    val config = PdfActivityConfiguration.Builder(context).build()
-//                    PdfActivity.showDocument(this, uri, config)
-//
-
                    context.startActivity(urlIntent) }) {
                     Card(modifier = Modifier
                         .height(200.dp)
                         .width(150.dp)
-                        .padding(all=2.dp)
-                        , contentColor = Color.White
-                      //  .background(color = if (isDark) Color.Black else Color.White)
+                        .padding(all = 2.dp)
+                      , backgroundColor = if (isDark)  Color.Black else Color.LightGray
                     ) {
                         Icon(
                             painter = painterResource(id = listItem.icon1),
                             contentDescription = "",
                             tint = Color.Unspecified,
                             modifier = Modifier
-                                .padding(top = 4.dp, start = 10.dp,end=10.dp, bottom = 40.dp)
+                                .padding(top = 4.dp, start = 10.dp, end = 10.dp, bottom = 40.dp)
                                 .height(50.dp)
                                 .width(50.dp)
                                 .clip(RoundedCornerShape(20.dp))
@@ -485,14 +548,14 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                         Card(modifier = Modifier
                             .height(200.dp)
                             .width(150.dp)
-                            .padding(all=2.dp)
-                            .background(color = if (isDark) Color.Black else Color.White)) {
+                            .padding(all = 2.dp)
+                            , backgroundColor = if (isDark)  Color.Black else Color.LightGray) {
                             Icon(
                                 painter = painterResource(id = listItem.icon2),
                                 contentDescription = "",
                                 tint = Color.Unspecified,
                                 modifier = Modifier
-                                    .padding(top = 4.dp, start = 10.dp,end=10.dp, bottom = 40.dp)
+                                    .padding(top = 4.dp, start = 10.dp, end = 10.dp, bottom = 40.dp)
                                     .height(50.dp)
                                     .width(50.dp)
                                     .clip(RoundedCornerShape(20.dp))
@@ -503,7 +566,7 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
 //                        .padding(start = 4.dp)) {
                             Text(
                                 text = listItem.name2,
-                                color = Color.White,
+                                color = if (isDark) Color.White else Color.Black,
                                 fontWeight = FontWeight.Medium,
                                 fontSize = 15.sp,
                                 modifier = Modifier
@@ -546,14 +609,14 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                         Card(modifier = Modifier
                             .height(200.dp)
                             .width(150.dp)
-                            .padding(all=2.dp)
-                            .background(color = if (isDark) Color.Black else Color.White)) {
+                            .padding(all = 2.dp)
+                            , backgroundColor = if (isDark)  Color.Black else Color.LightGray) {
                             Icon(
                                 painter = painterResource(id = listItem.icon3),
                                 contentDescription = "",
                                 tint = Color.Unspecified,
                                 modifier = Modifier
-                                    .padding(top = 4.dp, start = 10.dp,end=10.dp, bottom = 40.dp)
+                                    .padding(top = 4.dp, start = 10.dp, end = 10.dp, bottom = 40.dp)
                                     .height(50.dp)
                                     .width(50.dp)
                                     .clip(RoundedCornerShape(20.dp))
@@ -564,7 +627,7 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
 //                        .padding(start = 4.dp)) {
                             Text(
                                 text = listItem.name3,
-                                color = Color.White,
+                                color = if (isDark) Color.White else Color.Black,
                                 fontWeight = FontWeight.Medium,
                                 fontSize = 15.sp,
                                 modifier = Modifier
@@ -609,14 +672,14 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                         Card(modifier = Modifier
                             .height(200.dp)
                             .width(150.dp)
-                            .padding(all=2.dp)
-                            .background(color = if (isDark) Color.Black else Color.White)) {
+                            .padding(all = 2.dp)
+                            , backgroundColor = if (isDark)  Color.Black else Color.LightGray) {
                             Icon(
                                 painter = painterResource(id = listItem.icon4),
                                 contentDescription = "",
                                 tint = Color.Unspecified,
                                 modifier = Modifier
-                                    .padding(top = 4.dp, start = 10.dp,end=10.dp, bottom = 40.dp)
+                                    .padding(top = 4.dp, start = 10.dp, end = 10.dp, bottom = 40.dp)
                                     .height(50.dp)
                                     .width(50.dp)
                                     .clip(RoundedCornerShape(20.dp))
@@ -627,7 +690,7 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
 //                        .padding(start = 4.dp)) {
                             Text(
                                 text = listItem.name4,
-                                color = Color.White,
+                                color = if (isDark) Color.White else Color.Black,
                                 fontWeight = FontWeight.Medium,
                                 fontSize = 15.sp,
                                 modifier = Modifier
@@ -678,14 +741,14 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                         Card(modifier = Modifier
                             .height(200.dp)
                             .width(150.dp)
-                            .padding(all=2.dp)
-                            .background(color = if (isDark) Color.Black else Color.White)) {
+                            .padding(all = 2.dp)
+                            , backgroundColor = if (isDark)  Color.Black else Color.LightGray) {
                             Icon(
                                 painter = painterResource(id = listItem.icon6),
                                 contentDescription = "",
                                 tint = Color.Unspecified,
                                 modifier = Modifier
-                                    .padding(top = 4.dp, start = 10.dp,end=10.dp, bottom = 40.dp)
+                                    .padding(top = 4.dp, start = 10.dp, end = 10.dp, bottom = 40.dp)
                                     .height(50.dp)
                                     .width(50.dp)
                                     .clip(RoundedCornerShape(20.dp))
@@ -696,7 +759,7 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
 //                        .padding(start = 4.dp)) {
                             Text(
                                 text = listItem.name6,
-                                color = Color.White,
+                                color = if (isDark) Color.White else Color.Black,
                                 fontWeight = FontWeight.Medium,
                                 fontSize = 15.sp,
                                 modifier = Modifier
@@ -741,14 +804,14 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                         Card(modifier = Modifier
                             .height(200.dp)
                             .width(150.dp)
-                            .padding(all=2.dp)
-                            .background(color = if (isDark) Color.Black else Color.White)) {
+                            .padding(all = 2.dp)
+                            , backgroundColor = if (isDark)  Color.Black else Color.LightGray) {
                             Icon(
                                 painter = painterResource(id = listItem.icon7),
                                 contentDescription = "",
                                 tint = Color.Unspecified,
                                 modifier = Modifier
-                                    .padding(top = 4.dp, start = 10.dp,end=10.dp, bottom = 40.dp)
+                                    .padding(top = 4.dp, start = 10.dp, end = 10.dp, bottom = 40.dp)
                                     .height(50.dp)
                                     .width(50.dp)
                                     .clip(RoundedCornerShape(20.dp))
@@ -759,7 +822,7 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
 //                        .padding(start = 4.dp)) {
                             Text(
                                 text = listItem.name7,
-                                color = Color.White,
+                                color = if (isDark) Color.White else Color.Black,
                                 fontWeight = FontWeight.Medium,
                                 fontSize = 15.sp,
                                 modifier = Modifier
@@ -804,14 +867,14 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                         Card(modifier = Modifier
                             .height(200.dp)
                             .width(150.dp)
-                            .padding(all=2.dp)
-                            .background(color = if (isDark) Color.Black else Color.White)) {
+                            .padding(all = 2.dp)
+                            , backgroundColor = if (isDark)  Color.Black else Color.LightGray) {
                             Icon(
                                 painter = painterResource(id = listItem.icon5),
                                 contentDescription = "",
                                 tint = Color.Unspecified,
                                 modifier = Modifier
-                                    .padding(top = 4.dp, start = 10.dp,end=10.dp, bottom = 40.dp)
+                                    .padding(top = 4.dp, start = 10.dp, end = 10.dp, bottom = 40.dp)
                                     .height(50.dp)
                                     .width(50.dp)
                                     .clip(RoundedCornerShape(20.dp))
@@ -822,7 +885,7 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
 //                        .padding(start = 4.dp)) {
                             Text(
                                 text = listItem.name5,
-                                color = Color.White,
+                                color = if (isDark) Color.White else Color.Black,
                                 fontWeight = FontWeight.Medium,
                                 fontSize = 15.sp,
                                 modifier = Modifier
@@ -867,14 +930,14 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                         Card(modifier = Modifier
                             .height(200.dp)
                             .width(150.dp)
-                            .padding(all=2.dp)
-                            .background(color = if (isDark) Color.Black else Color.White)) {
+                            .padding(all = 2.dp)
+                            , backgroundColor = if (isDark)  Color.Black else Color.LightGray) {
                             Icon(
                                 painter = painterResource(id = listItem.icon8),
                                 contentDescription = "",
                                 tint = Color.Unspecified,
                                 modifier = Modifier
-                                    .padding(top = 4.dp, start = 10.dp,end=10.dp, bottom = 40.dp)
+                                    .padding(top = 4.dp, start = 10.dp, end = 10.dp, bottom = 40.dp)
                                     .height(50.dp)
                                     .width(50.dp)
                                     .clip(RoundedCornerShape(20.dp))
@@ -893,13 +956,5 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                                     .align(Alignment.CenterHorizontally)
 
 
-                        ) }} }}
-
-            Row(modifier = Modifier
-                .padding(start = 8.dp, bottom = 2.dp, top = 5.dp)
-                .height(45.dp)) {
-                Image(painter = painterResource(id = R.drawable.border), contentDescription ="" )
-            }
-
-
-        }}}
+                        ) }} }}}}
+        }

@@ -1,10 +1,13 @@
 package tech.example.task
 
+import androidx.annotation.DrawableRes
+import androidx.compose.ui.text.AnnotatedString
 import com.pspdfkit.internal.e6
 
 sealed class Screens(val route: String){
     object LoginPage: Screens("first")
     object SignupScreen:Screens("signup")
+    object ProfileScreen:Screens("profile")
     object SecondScreen: Screens("second")
     object FantasyScreen: Screens("fantasy")
     object RomanceScreen: Screens("romance")
@@ -28,6 +31,14 @@ sealed class Constants(val value: String){
 //data class UserModel(
 //    var profile: ProfileModel
 //)
+
+data class ImageClass(
+    @DrawableRes val imageId:Int,
+    val contentDescription:String? = null
+)
+
+
+
 
 data class FantasyClass(
     val name1: String,

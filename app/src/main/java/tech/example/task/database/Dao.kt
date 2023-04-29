@@ -1,4 +1,4 @@
-package tech.example.database
+package tech.example.task.database
 
 
 import androidx.room.Dao
@@ -8,12 +8,13 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface StudentDao{
+interface ReaderDao{
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertStudent(student: Student)
+    suspend fun insertReader(reader: Reader)
 
-    @Query("select * from Student")
-    fun getStudent(): Flow<List<Student>>
+    @Query("select * from Reader")
+    fun getReader(): Flow<List<Reader>>
 
 }
+

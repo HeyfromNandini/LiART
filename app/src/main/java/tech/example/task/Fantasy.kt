@@ -66,13 +66,13 @@ fun Fantasy(navHostController: NavHostController, isDark: Boolean,onClick: ()-> 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.Black)
+            .background(color = if (isDark) Color.Black else Color.White)
     ) {
         Row() {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
                 contentDescription = "",
-                tint = Color.White,
+                tint = if (isDark) Color.White else Color.Black,
                 modifier = Modifier
                     .padding(start = 15.dp, top = 35.dp)
                     .size(40.dp)
@@ -82,12 +82,12 @@ fun Fantasy(navHostController: NavHostController, isDark: Boolean,onClick: ()-> 
                 textAlign = TextAlign.Start,
                 text = "FANTASY", fontFamily = FontFamily.Serif,
                 fontStyle = FontStyle.Italic,
-                color = Color.White,
+                color = if (isDark) Color.White else Color.Black,
                 fontSize = 40.sp, modifier = Modifier
                     .padding(start = 1.dp, top = 30.dp)
             )
             val compnotify by rememberLottieComposition(
-                spec = LottieCompositionSpec.Asset("bottle.json")
+                spec = LottieCompositionSpec.Asset("magicbook.json")
             )
             val progress by animateLottieCompositionAsState(compnotify)
             LottieAnimation(
@@ -97,19 +97,19 @@ fun Fantasy(navHostController: NavHostController, isDark: Boolean,onClick: ()-> 
                 contentScale = ContentScale.Crop,
                 speed = 1.45f,
                 modifier = Modifier
-                    .size(90.dp)
-                    .padding(end = 1.dp, top = 35.dp, start = 1.dp)
+                    .size(120.dp)
+                    .padding( top = 5.dp, end = 70.dp).padding(2.dp)
             )
         }
         Row(modifier = Modifier.fillMaxWidth()) {
             Card(
                 modifier = Modifier
-                    .padding(start = 2.dp, top = 10.dp)
+                    .padding(start = 2.dp, top = 1.dp)
                     .height(200.dp)
                     .width(450.dp)
                     .clip(RoundedCornerShape(50.dp)),
-                backgroundColor = Color.Black,
-                border = BorderStroke(width = 1.dp, brush = SolidColor(Color.White)),
+                backgroundColor = if (isDark) Color.Black else Color.White,
+                border = BorderStroke(width = 1.dp, brush = SolidColor(if (isDark) Color.White else Color.Black)),
                 shape = MaterialTheme.shapes.medium
             ) {
                 Image(
@@ -143,12 +143,13 @@ fun Fantasy(navHostController: NavHostController, isDark: Boolean,onClick: ()-> 
                             .width(200.dp)
                             .padding(start = 10.dp, top = 20.dp, bottom = 20.dp)
                             .clip(RoundedCornerShape(20.dp)),
-                        border = BorderStroke(width = 1.dp, brush = SolidColor(Color.White))
+                        backgroundColor = if (isDark)  Color.Black else Color.LightGray,
+                        border = BorderStroke(width = 1.dp, brush = SolidColor(if (isDark) Color.White else Color.Black))
 
                     ) {
                         Text(
                             text = listItem.name1,
-                            color = Color.White,
+                            color = if (isDark) Color.White else Color.Black,
                             fontWeight = FontWeight.Medium,
                             fontSize = 20.sp,
 
@@ -167,12 +168,12 @@ fun Fantasy(navHostController: NavHostController, isDark: Boolean,onClick: ()-> 
                             modifier = Modifier.height(40.dp).width(30.dp)
                                 .padding(top = 85.dp, start = 30.dp, bottom = 18.dp, end = 50.dp),
                             enabled = true,
-                            border = BorderStroke(width = 1.dp, brush = SolidColor(Color.White)),
+                            border = BorderStroke(width = 1.dp, brush = SolidColor(if (isDark) Color.White else Color.Black)),
                             shape = MaterialTheme.shapes.medium
 
 
                         ){
-                            Text(text = "Open PDF", color = Color.White)
+                            Text(text = "Open PDF", color = if (isDark) Color.White else Color.Black)
                         }
                     }
                 }
