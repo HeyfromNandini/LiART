@@ -107,7 +107,7 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
                 .padding(top = 1.dp, start = 1.dp)
         ) {
             Text(
-                text = "DISCLAIMER: *These details are present to whole communityn to network, if you don't wanna share your details just click on the button and continue reading.*",
+                text = "DISCLAIMER: *These details are present to whole community to network, if you don't wanna share your details just click on the button and continue reading.*",
                 color = if (isDark) Color.LightGray else Color.Gray,
                 textAlign = TextAlign.Center,
                 fontSize = 10.sp,
@@ -141,7 +141,7 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
                 },
                 placeholder = { Text(text = "Name", fontSize = 14.sp) },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth(0.9f).size(55.dp)
+                modifier = Modifier.fillMaxWidth(0.9f).size(60.dp)
             )
             OutlinedTextField(
                 value = emailValue.value,
@@ -153,7 +153,7 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
                     color =if (isDark) Color.Gray else Color.Black) },
                 placeholder = { Text(text = "Email Address", fontSize = 14.sp) },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth(0.9f).size(55.dp),
+                modifier = Modifier.fillMaxWidth(0.9f).size(60.dp),
 
                 //      .border(width = 1.dp, color = if (isDark) Color.White else Color.Black)
             )
@@ -169,7 +169,7 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
                 },
                 placeholder = { Text(text = "Phone Number", fontSize = 14.sp) },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth(0.9f).size(55.dp),
+                modifier = Modifier.fillMaxWidth(0.9f).size(60.dp),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
             OutlinedTextField(
@@ -182,7 +182,7 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
                     color =if (isDark) Color.Gray else Color.Black) },
                 placeholder = { Text(text = "Password", fontSize = 14.sp) },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth(0.9f).size(55.dp),
+                modifier = Modifier.fillMaxWidth(0.9f).size(60.dp),
                 trailingIcon = {
                     IconButton(onClick = {
                         passwordVisibility = !passwordVisibility
@@ -225,13 +225,16 @@ fun Signup(navHostController: NavHostController, viewModel: MainViewModel, isDar
 //                })
         }
         Button(
-            onClick = {viewModel.insertReader(
+        onClick = {
+            viewModel.insertReader(
                 name = nameValue.value,
                 email = emailValue.value,
                 phoneValue = phoneValue.value,
-            passwordValue = passwordValue.value)
-                navHostController.navigate(Screens.SecondScreen.route)
-            },
+                passwordValue = passwordValue.value
+            )
+            navHostController.navigate(Screens.SecondScreen.route)
+        },
+
             modifier = Modifier
                 .fillMaxWidth(0.8f)
                 .height(60.dp)

@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 class DatabaseRepo (private val readerDao: ReaderDao){
     val searchResults: Flow<List<Reader>> = readerDao.getReader()
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
-    fun insertStudent(reader: Reader){
+    fun insertReader(reader: Reader){
         coroutineScope.launch {
             readerDao.insertReader(reader)
         }
