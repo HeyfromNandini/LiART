@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -37,7 +38,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
 fun Scific(navHostController: NavHostController, isDark: Boolean,onClick: ()-> Unit){
-
+    val context = LocalContext.current
     val scific = mutableListOf<ScificClass>(
         ScificClass(
             name7 = "THE TIME MACHINE",
@@ -49,8 +50,8 @@ fun Scific(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
             link7 = "https://drive.google.com/file/d/1mXnt7EgrqmX5wkT_AzsNWxxjA0WXb91O/view?usp=share_link"),
         ScificClass(
             name7 = "A VOYAGE TO THE MOON",
-            icon7 = R.drawable.dreamofspace,
-            link7 = ""),
+            icon7 = R.drawable.voyage,
+            link7 = "https://drive.google.com/file/d/1p4Y3Xp_4F-qkIuB1DxtjyzaY1O9wpmru/view?usp=share_link"),
         ScificClass(
             name7 = "THE GIRL WHO KNEW TOO MUCH",
             icon7 = R.drawable.thegirlwhoknew,
@@ -161,8 +162,9 @@ fun Scific(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                                 val urlIntent = Intent(
                                     Intent.ACTION_VIEW,
                                     Uri.parse(listItem.link7)
-
                                 )
+
+                                context.startActivity(urlIntent)
                             },
                             modifier = Modifier.height(40.dp).width(30.dp)
                                 .padding(top = 85.dp, start = 30.dp, bottom = 18.dp, end = 50.dp),

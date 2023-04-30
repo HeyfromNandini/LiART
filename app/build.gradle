@@ -53,9 +53,9 @@ android {
 dependencies {
 
 
-   //date/time
-        implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-        implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+//   //date/time
+//        implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+//        implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
     //autoimageslider
     implementation 'com.google.accompanist:accompanist-pager:0.22.0-rc'

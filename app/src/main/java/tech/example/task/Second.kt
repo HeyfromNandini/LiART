@@ -141,7 +141,7 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
             link4 = "https://drive.google.com/file/d/1b4kMaJ1hTqFeXLM092ZBOf0wYly1DV3e/view?usp=share_link"),
         ThrillerClass(
             name4 = "THE FEVER IN THE WATER",
-            icon4 = R.drawable.thriller,
+            icon4 = R.drawable.thefever,
             link4 = "https://drive.google.com/file/d/1b2woIS_3BG9w5qwMea5j1wCx5OANTd1h/view?usp=share_link"),
         ThrillerClass(
             name4 = "A STRANGER IN THE HOUSE",
@@ -175,25 +175,25 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
 
     val poetry = mutableListOf<PoetryClass>(
         PoetryClass(
-            name6 = "SONG OF RUIN",
+            name6 = "VICTORIAN POETRY",
+            icon6 = R.drawable.victorianpoetry,
+            link6 = "https://drive.google.com/file/d/1pGi3DVUFCFiPCi4K6hxpZU1cjVtEY1VR/view?usp=drivesdk"),
+        PoetryClass(
+            name6 = "SONG OF RUIN" ,
             icon6 = R.drawable.songofruin,
-        link6 = ""),
+            link6 = "https://drive.google.com/file/d/1pOYcNH1Dsn7aE1pfeLu1Ss1EYOQefmAk/view?usp=drivesdk"),
         PoetryClass(
-            name6 = "BOOK OF VERY SILLY POEMS",
-            icon6 = R.drawable.bookofsillypoems,
-            link6 = ""),
+            name6 = "WILLIAM SHAKESPEARE",
+            icon6 = R.drawable.william,
+            link6 = "https://drive.google.com/file/d/1n1sxddkYUQO6G5ikJQrWeixv1-eTmsXV/view?usp=drivesdk"),
         PoetryClass(
-            name6 = "POEM OF THE DECADE",
-            icon6 = R.drawable.poemofdecade,
-            link6 = ""),
+            name6 = "POETRY OF PHYSICS",
+            icon6 = R.drawable.poetryofphysics,
+            link6 = "https://drive.google.com/file/d/1pTTaOBOgn3t8zF9imMfAv5AWmT7Vbufu/view?usp=drivesdk"),
         PoetryClass(
-            name6 = "SOLITON",
-            icon6 = R.drawable.soliton,
-            link6 = ""),
-        PoetryClass(
-            name6 = "THE COMPLETE WORKS",
-            icon6 = R.drawable.thecompletework,
-            link6 = "")
+            name6 = "POETRY FOR DUMMIES",
+            icon6 = R.drawable.dummies,
+            link6 = "https://drive.google.com/file/d/1pQsklRIs9MDYurdNprHBOtPERmBbfwC8/view?usp=drivesdk")
     )
 
 
@@ -201,48 +201,49 @@ fun Second(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
         ScificClass(
             name7 = "THE TIME MACHINE",
             icon7 = R.drawable.thetimemachine,
-        link7 = ""),
+            link7 = "https://drive.google.com/file/d/1mUGbMe9OIAh3l1C-K_FEXVV-uwep06Nd/view?usp=share_link"),
         ScificClass(
             name7 = "THE TIME TRAVELLER'S WIFE",
             icon7 = R.drawable.timetravellerswife,
-            link7 = ""),
+            link7 = "https://drive.google.com/file/d/1mXnt7EgrqmX5wkT_AzsNWxxjA0WXb91O/view?usp=share_link"),
         ScificClass(
-            name7 = "THE DREAM OF SPACE",
-            icon7 = R.drawable.dreamofspace,
-            link7 = ""),
+            name7 = "A VOYAGE TO THE MOON",
+            icon7 = R.drawable.voyage,
+            link7 = "https://drive.google.com/file/d/1p4Y3Xp_4F-qkIuB1DxtjyzaY1O9wpmru/view?usp=share_link"),
         ScificClass(
             name7 = "THE GIRL WHO KNEW TOO MUCH",
             icon7 = R.drawable.thegirlwhoknew,
-            link7 = ""),
+            link7 = "https://drive.google.com/file/d/1mmIzSOE8gy-ELbDCites7ZHXriRTanwk/view?usp=share_link"),
         ScificClass(
             name7 = "STRANGE WEATHER",
             icon7 = R.drawable.strangeweather,
-            link7 = "")
+            link7 = "https://drive.google.com/file/d/1o5WrluJ-pltHX7MUKHaQ7Aa4MHKPsrug/view?usp=share_link")
     )
+
 
     val history= mutableListOf<HistoryClass>(
         HistoryClass(
             name8 = "THE CASUAL VACANCY",
             icon8 = R.drawable.casualvacancy,
-        link8 = ""),
+            link8 = "https://drive.google.com/file/d/1lzccPV0ctQwmqShJpVpoEg9VT08G1YEv/view?usp=share_link"),
         HistoryClass(
-            name8 = "THE HISTORY OF INDIA",
-            icon8 = R.drawable.historyofindia,
-            link8 = ""),
+            //CHANGE
+            name8 = "MODERN INDIA",
+            icon8 = R.drawable.modern,
+            link8 = "https://drive.google.com/file/d/1nRZefrz0q196LJ8Sz7TmrTjheESd18G9/view?usp=share_link"),
         HistoryClass(
             name8 = "DRAGONFLY",
             icon8 = R.drawable.dragonfly,
-            link8 = ""),
+            link8 = "https://drive.google.com/file/d/1ngNBoQnAaNViHojpn_-mDe65Ub4Y-s4P/view?usp=share_link"),
         HistoryClass(
             name8 = "WHERE THE LIGHT ENTERS",
             icon8 = R.drawable.wherelight,
-            link8 = ""),
+            link8 = "https://drive.google.com/file/d/1ndRtJ7mzvPsXtoNuO1UCnzFfoyGXJKaL/view?usp=share_link"),
         HistoryClass(
             name8 = "MISTRESS OF THE RITZ",
             icon8 = R.drawable.mistress,
-            link8 = "")
+            link8 = "https://drive.google.com/file/d/1nTNI6OfzvO7uOECZK1W6_pVtOOsWJIal/view?usp=share_link")
     )
-
     Column(modifier = Modifier
         .fillMaxSize()
         .background(color = if (isDark) Color.Black else Color.White)) {

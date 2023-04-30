@@ -162,8 +162,8 @@ fun Fantasy(navHostController: NavHostController, isDark: Boolean,onClick: ()-> 
                                 val urlIntent = Intent(
                                     Intent.ACTION_VIEW,
                                     Uri.parse(listItem.link1)
-
                                 )
+                                context.startActivity(urlIntent)
                             },
                             modifier = Modifier.height(40.dp).width(30.dp)
                                 .padding(top = 85.dp, start = 30.dp, bottom = 18.dp, end = 50.dp),

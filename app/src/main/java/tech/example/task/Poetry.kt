@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -37,7 +38,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
 fun Poetry(navHostController: NavHostController, isDark: Boolean,onClick: ()-> Unit){
-
+    val context = LocalContext.current
     val poetry = mutableListOf<PoetryClass>(
         PoetryClass(
             name6 = "VICTORIAN POETRY",
@@ -57,7 +58,7 @@ fun Poetry(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
             link6 = "https://drive.google.com/file/d/1pTTaOBOgn3t8zF9imMfAv5AWmT7Vbufu/view?usp=drivesdk"),
         PoetryClass(
             name6 = "POETRY FOR DUMMIES",
-            icon6 = R.drawable.soliton,
+            icon6 = R.drawable.dummies,
             link6 = "https://drive.google.com/file/d/1pQsklRIs9MDYurdNprHBOtPERmBbfwC8/view?usp=drivesdk"),
 
     )
@@ -162,8 +163,9 @@ fun Poetry(navHostController: NavHostController, isDark: Boolean,onClick: ()-> U
                                 val urlIntent = Intent(
                                     Intent.ACTION_VIEW,
                                     Uri.parse(listItem.link6)
-
                                 )
+
+                                context.startActivity(urlIntent)
                             },
                             modifier = Modifier.height(40.dp).width(30.dp)
                                 .padding(top = 85.dp, start = 30.dp, bottom = 18.dp, end = 50.dp),

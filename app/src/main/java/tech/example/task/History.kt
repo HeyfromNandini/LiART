@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -36,7 +37,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
 fun History(navHostController: NavHostController, isDark: Boolean,onClick: ()-> Unit){
-
+    val context = LocalContext.current
     val history= mutableListOf<HistoryClass>(
         HistoryClass(
             name8 = "THE CASUAL VACANCY",
@@ -45,7 +46,7 @@ fun History(navHostController: NavHostController, isDark: Boolean,onClick: ()-> 
         HistoryClass(
             //CHANGE
             name8 = "MODERN INDIA",
-            icon8 = R.drawable.historyofindia,
+            icon8 = R.drawable.modern,
             link8 = "https://drive.google.com/file/d/1nRZefrz0q196LJ8Sz7TmrTjheESd18G9/view?usp=share_link"),
         HistoryClass(
             name8 = "DRAGONFLY",
@@ -160,8 +161,9 @@ fun History(navHostController: NavHostController, isDark: Boolean,onClick: ()-> 
                                 val urlIntent = Intent(
                                     Intent.ACTION_VIEW,
                                     Uri.parse(listItem.link8)
-
                                 )
+
+                                context.startActivity(urlIntent)
                             },
                             modifier = Modifier.height(40.dp).width(30.dp)
                                 .padding(top = 85.dp, start = 30.dp, bottom = 18.dp, end = 50.dp),

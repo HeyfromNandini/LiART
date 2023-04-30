@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -37,7 +38,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
 fun Biography(navHostController: NavHostController, isDark: Boolean,onClick: ()-> Unit){
-
+    val context = LocalContext.current
     val biography = mutableListOf<BiographyClass>(
         BiographyClass(
             name5 = "SARDAR VALLABBHAI PATEL",
@@ -161,8 +162,9 @@ fun Biography(navHostController: NavHostController, isDark: Boolean,onClick: ()-
                                 val urlIntent = Intent(
                                     Intent.ACTION_VIEW,
                                     Uri.parse(listItem.link5)
-
                                 )
+
+                                context.startActivity(urlIntent)
                             },
                             modifier = Modifier.height(40.dp).width(30.dp)
                                 .padding(top = 85.dp, start = 30.dp, bottom = 18.dp, end = 50.dp),
